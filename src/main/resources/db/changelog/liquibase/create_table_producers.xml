@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create_seq_producers" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_seq_producers" onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_producers"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_producers"
+                        incrementBy="1"
+                        minValue="1"
+                        maxValue="999999999"
+                        startValue="1"
+                        ordered="1"/>
+    </changeSet>
+
+    <changeSet id="create_table_producers" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_table_producers" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="producers"/>
+            </not>
+        </preConditions>
+        <createTable tableName="producers">
+            <column name="id" type="numeric(10)" defaultValueSequenceNext="seq_producers">
+                <constraints primaryKey="true" primaryKeyName="pk_producers"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

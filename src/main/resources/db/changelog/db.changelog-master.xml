@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <include file="db/changelog/liquibase/create_table_movies.xml"/>
+    <include file="db/changelog/liquibase/create_table_producers.xml"/>
+    <include file="db/changelog/liquibase/create_table_studios.xml"/>
+    <include file="db/changelog/liquibase/create_table_movies_producers.xml"/>
+    <include file="db/changelog/liquibase/create_table_movies_studios.xml"/>
+
+</databaseChangeLog>

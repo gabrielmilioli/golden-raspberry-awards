@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create_seq_movies" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_seq_movies" onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_movies"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_movies"
+                        incrementBy="1"
+                        minValue="1"
+                        maxValue="999999999"
+                        startValue="1"
+                        ordered="1"/>
+    </changeSet>
+
+    <changeSet id="create_table_movies" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_table_movies" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="movies"/>
+            </not>
+        </preConditions>
+        <createTable tableName="movies">
+            <column name="id" type="numeric(10)" defaultValueSequenceNext="seq_movies">
+                <constraints primaryKey="true" primaryKeyName="pk_movies"/>
+            </column>
+            <column name="year_movie" type="numeric(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="winner" type="boolean" defaultValueBoolean="false"/>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

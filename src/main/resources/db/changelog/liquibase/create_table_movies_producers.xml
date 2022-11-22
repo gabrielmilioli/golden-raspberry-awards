@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create_seq_movies_producers" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_seq_movies_producers" onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_movies_producers"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="seq_movies_producers"
+                        incrementBy="1"
+                        minValue="1"
+                        maxValue="999999999"
+                        startValue="1"
+                        ordered="1"/>
+    </changeSet>
+
+    <changeSet id="create_table_movies_producers" author="gabriel">
+        <preConditions onErrorMessage="Failed Pre Conditions for create_table_movies_producers" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="movies_producers"/>
+            </not>
+        </preConditions>
+        <createTable tableName="movies_producers">
+            <column name="id" type="numeric(10)" defaultValueSequenceNext="seq_movies_producers">
+                <constraints primaryKey="true" primaryKeyName="pk_movies_producers"/>
+            </column>
+            <column name="id_movie" type="numeric(10)">
+                <constraints nullable="false" foreignKeyName="fk_movies_producers_movie" references="movies(id)"/>
+            </column>
+            <column name="id_producer" type="numeric(10)">
+                <constraints nullable="false" foreignKeyName="fk_movies_producers_producer" references="producers(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
