@@ -18,7 +18,6 @@ public class Studio {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "seq_studios", sequenceName = "seq_studios", allocationSize = 1)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false)

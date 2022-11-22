@@ -18,7 +18,6 @@ public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "seq_producers", sequenceName = "seq_producers", allocationSize = 1)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false)

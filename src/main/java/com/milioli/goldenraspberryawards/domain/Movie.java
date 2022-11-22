@@ -19,7 +19,6 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "seq_movies", sequenceName = "seq_movies", allocationSize = 1)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "year_movie", length = 4, nullable = false)
